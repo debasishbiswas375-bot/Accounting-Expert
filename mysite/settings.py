@@ -8,7 +8,7 @@ DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
-    'jazzmin',  # Modern Admin Theme
+    'jazzmin',  # Modern theme must be first
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -20,7 +20,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # Serves CSS/JS on Render
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -43,12 +43,11 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Jazzmin Eye-Catching UI
+# Jazzmin Eye-Catching UI Settings
 JAZZMIN_SETTINGS = {
     "site_title": "Accounting Expert Admin",
     "site_header": "Accounting Expert",
     "site_brand": "Accounting Expert Portal",
     "welcome_sign": "Welcome to the Accounting Expert Admin Portal",
-    "copyright": "Accounting Expert Ltd",
     "theme": "flatly",
 }
