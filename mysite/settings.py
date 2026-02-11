@@ -8,7 +8,7 @@ DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
-    'jazzmin',  # Professional Admin Theme
+    'jazzmin',  # Modern Admin Theme
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -31,7 +31,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'mysite.urls'
 
-# This section fixes the admin.E403 error in your log
+# FIX for admin.E403 error:
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -50,6 +50,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
+# Reads the DATABASE_URL from Render Environment Variables
 DATABASES = {
     'default': dj_database_url.config(
         default=os.environ.get('DATABASE_URL'),
