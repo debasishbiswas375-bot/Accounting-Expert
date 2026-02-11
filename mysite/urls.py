@@ -2,10 +2,10 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.models import User
 
+# Automatically creates your admin user on startup
 def auto_create_admin():
     try:
         if not User.objects.filter(username="admin").exists():
-            # Use your updated password here
             User.objects.create_superuser("admin", "admin@example.com", "Deba9002043666")
     except Exception:
         pass
