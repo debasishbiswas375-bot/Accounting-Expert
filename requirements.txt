@@ -1,8 +1,6 @@
 django
-django-unfold
-pypdf
-pandas
-openpyxl
 gunicorn
+whitenoise
+dj-database-url
 psycopg2-binary
-whitenoise==6.6.0
+django-jazzmin
