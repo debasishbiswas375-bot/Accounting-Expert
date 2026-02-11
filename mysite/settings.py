@@ -39,3 +39,13 @@ JAZZMIN_UI_TWEAKS = {
     "theme": "flatly", # Professional blue theme
     "dark_mode_theme": "darkly",
 }
+# mysite/settings.py
+
+# This is the missing link from your error log
+STATIC_URL = '/static/'
+
+# This tells Django where to put static files for production
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# This enables WhiteNoise to serve your CSS/JS files
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
