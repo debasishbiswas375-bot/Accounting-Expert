@@ -98,7 +98,7 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 # Custom user model
-AUTH_USER_MODEL = "accounts.CustomUser"
+AUTH_USER_MODEL = "converter.CustomUser"
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
