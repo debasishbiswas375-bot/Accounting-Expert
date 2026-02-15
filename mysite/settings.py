@@ -3,7 +3,7 @@ import dj_database_url
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-key-accounting-expert')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-accounting-expert-final-2026')
 DEBUG = False
 ALLOWED_HOSTS = ['*']
 
@@ -21,11 +21,11 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware', # FIX: Required at Position 3
+    'django.contrib.sessions.middleware.SessionMiddleware', # Position 3: MUST be here
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware', # FIX: Must follow Sessions
-    'django.contrib.messages.middleware.MessageMiddleware', # FIX: Required for Admin
+    'django.contrib.auth.middleware.AuthenticationMiddleware', # Position 6: MUST follow sessions
+    'django.contrib.messages.middleware.MessageMiddleware', # Position 7: Required for Admin
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
