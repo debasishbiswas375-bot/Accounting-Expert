@@ -3,7 +3,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'your-secret-key'
+SECRET_KEY = 'postgresql://neondb_owner:npg_RVfsPe3aAL7c@ep-little-scene-a1znmqcr-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require'
 
 DEBUG = True
 
