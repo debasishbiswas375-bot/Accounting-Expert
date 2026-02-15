@@ -1,12 +1,38 @@
 import os
-import dj_database_url # Make sure this is in your requirements.txt
+import dj_database_url
+from pathlib import Path
 
-# ... (Keep your existing SECRET_KEY and INSTALLED_APPS) ...
-
+BASE_DIR = Path(__file__).resolve().parent.parent
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-key-123')
 DEBUG = False
-ALLOWED_HOSTS = ['*'] # Or your specific .onrender.com domain
+ALLOWED_HOSTS = ['*']
 
-# Database connection to Neon
+INSTALLED_APPS = [
+    'jazzmin',  # Must be above admin
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'converter',
+]
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware', # FIX: Must be here
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware', # FIX: Must be after sessions
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+ROOT_URLCONF = 'mysite.urls'
+WSGI_APPLICATION = 'mysite.wsgi.application'
+
+# Database: Using Neon PostgreSQL
 DATABASES = {
     'default': dj_database_url.config(
         default=os.environ.get('DATABASE_URL'),
@@ -15,6 +41,6 @@ DATABASES = {
     )
 }
 
-# Static files (required for Render)
+# Static Files
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
