@@ -1,12 +1,14 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from .forms import RegisterForm
 
-def home(request):
-    if request.method == 'POST' and request.FILES.get('file'):
-        uploaded_file = request.FILES['file']
-        
-        # We will add the "Real Conversion Logic" here in the next step.
-        # For now, let's just prove it works!
-        return HttpResponse(f"✅ Received file: {uploaded_file.name}")
 
-    return render(request, 'home.html')
+def register(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/admin/')
+    else:
+        form = RegisterForm()
+
+    return render(request, 'register.html', {'form': form})
