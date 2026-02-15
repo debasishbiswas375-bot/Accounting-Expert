@@ -2,15 +2,13 @@
 # exit on error
 set -o errexit
 
-# 1. Install dependencies
+# Install dependencies (ensure "pip" is the first word)
 pip install -r requirements.txt
 
-# 2. Collect static files for the admin panel
+# Prepare the site
 python manage.py collectstatic --no-input
-
-# 3. Run database migrations to Neon
 python manage.py migrate
 
-# 4. Create your Admin user (Change the password below!)
-export DJANGO_SUPERUSER_PASSWORD="YourSecurePassword123"
+# Create Admin (Change password below)
+export DJANGO_SUPERUSER_PASSWORD="admin123"
 python manage.py createsuperuser --noinput --username admin --email admin@example.com || true
