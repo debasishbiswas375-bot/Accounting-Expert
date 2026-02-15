@@ -1,22 +1,21 @@
 import os
 from pathlib import Path
 
-# BASE_DIR
+# Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECRET_KEY
-SECRET_KEY = os.environ.get("SECRET_KEY", "postgresql://neondb_owner:npg_RVfsPe3aAL7c@ep-little-scene-a1znmqcr-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
-)
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','postgresql://neondb_owner:npg_RVfsPe3aAL7c@ep-little-scene-a1znmqcr-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require')
 
-# DEBUG mode (set to False in production)
-DEBUG = os.environ.get("DEBUG", "False") == "True"
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
 
-ALLOWED_HOSTS = ["accountingexpert.onrender.com"]
+# Add your Render domain here
+ALLOWED_HOSTS = ['accountingexpert.onrender.com', '127.0.0.1', 'localhost']
 
-
-# Application definition
+# Installed apps
 INSTALLED_APPS = [
-    'converter',
+    'converter',  # your app
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -25,6 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+# Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -35,12 +35,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'your_project_name.urls'
+# Root URL
+ROOT_URLCONF = 'AccountingExpert.urls'
 
+# Templates
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -53,17 +55,14 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'your_project_name.wsgi.application'
+# WSGI
+WSGI_APPLICATION = 'AccountingExpert.wsgi.application'
 
-# Database (use Render Postgres or SQLite for testing)
+# Database (use SQLite for simplicity)
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get("DB_NAME", "mydb"),
-        'USER': os.environ.get("DB_USER", "user"),
-        'PASSWORD': os.environ.get("DB_PASSWORD", "password"),
-        'HOST': os.environ.get("DB_HOST", "localhost"),
-        'PORT': os.environ.get("DB_PORT", "5432"),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -75,14 +74,23 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
 ]
+
+# Internationalization
+LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'UTC'
+USE_I18N = True
+USE_TZ = True
 
 # Static files
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Superuser creation using environment variables (optional)
-# Run `python manage.py createsuperuser` manually if needed
-DJANGO_SUPERUSER_USERNAME = os.environ.get("DJANGO_SUPERUSER_USERNAME", "admin")
-DJANGO_SUPERUSER_PASSWORD = os.environ.get("DJANGO_SUPERUSER_PASSWORD", "admin123")
-DJANGO_SUPERUSER_EMAIL = os.environ.get("DJANGO_SUPERUSER_EMAIL", "admin@example.com")
+# Default auto field
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
