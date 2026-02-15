@@ -31,7 +31,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'mysite.urls'
 
-# FIX: Added TEMPLATES block to resolve admin.E403
+# Fixes the admin.E403 error seen in your logs
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -50,6 +50,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
+# Database configuration using verified Neon environment variable
 DATABASES = {
     'default': dj_database_url.config(
         default=os.environ.get('DATABASE_URL'),
@@ -58,7 +59,9 @@ DATABASES = {
     )
 }
 
-# Static files
+# Static files for Render
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Port configuration required for Render health check
 PORT = os.environ.get('PORT', '8000')
