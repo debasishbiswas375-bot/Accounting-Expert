@@ -11,8 +11,8 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "postgresql://neondb_owner:npg_RVfsPe3
 # DEBUG mode (set to False in production)
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
-# ALLOWED_HOSTS
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "accountingexpert.onrender.com").split(",")
+ALLOWED_HOSTS = ["accountingexpert.onrender.com", "localhost", "127.0.0.1"]
+
 
 # Application definition
 INSTALLED_APPS = [
