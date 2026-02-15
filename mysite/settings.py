@@ -21,10 +21,10 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware', # FIX: Must be here
+    'django.contrib.sessions.middleware.SessionMiddleware', # FIX: Position 3
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware', # FIX: Must be after sessions
+    'django.contrib.auth.middleware.AuthenticationMiddleware', # FIX: Must follow sessions
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -41,6 +41,5 @@ DATABASES = {
     )
 }
 
-# Static Files
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
