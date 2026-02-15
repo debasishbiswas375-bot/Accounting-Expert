@@ -1,5 +1,8 @@
-from django.urls import path, include
+# converter/urls.py
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('', include('converter.urls')),  # ❌ this line is failing
+    path('', views.home, name='home'),
+    path('convert/', views.convert, name='convert'),
 ]
