@@ -1,10 +1,16 @@
 import os
-import dj_database_url
 from pathlib import Path
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-accounting-expert-final-2026')
+
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY',
+    'django-insecure-accounting-expert-final-2026'
+)
+
 DEBUG = False
+
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
@@ -31,7 +37,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'mysite.urls'
 
-# Fixes the admin.E403 error seen in your logs
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -50,18 +55,38 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-# Database configuration using verified Neon environment variable
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
-        conn_max_age=600,
-        ssl_require=True
-    )
-}
 
-# Static files for Render
+# =========================
+# DATABASE CONFIG (FIXED)
+# =========================
+
+if os.environ.get("DATABASE_URL"):
+    DATABASES = {
+        "default": dj_database_url.config(
+            conn_max_age=600,
+            ssl_require=True
+        )
+    }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
+
+
+# =========================
+# STATIC FILES (RENDER)
+# =========================
+
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Port configuration required for Render health check
-PORT = os.environ.get('PORT', '8000')
+
+# =========================
+# DEFAULT AUTO FIELD
+# =========================
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
