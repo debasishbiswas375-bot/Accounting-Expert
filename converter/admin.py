@@ -1,8 +1,31 @@
 from django.contrib import admin
-from .models import Topic
+from django.contrib.auth.admin import UserAdmin
+from .models import CustomUser, Plan
 
 
-@admin.register(Topic)
-class TopicAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'slug')
-    prepopulated_fields = {'slug': ('title',)}
+class CustomUserAdmin(UserAdmin):
+    fieldsets = UserAdmin.fieldsets + (
+        ("Additional Info", {
+            "fields": (
+                "phone",
+                "country",
+                "state",
+                "city",
+                "plan",
+            )
+        }),
+    )
+
+    list_display = (
+        "username",
+        "email",
+        "phone",
+        "country",
+        "city",
+        "plan",
+        "is_staff",
+    )
+
+
+admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(Plan)
