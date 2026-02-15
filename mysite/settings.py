@@ -26,9 +26,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    # Third-party
-    "django_jazzmin",
-
     # Your apps
     "converter",
       # Make sure this exists with CustomUser
