@@ -1,8 +1,8 @@
-django
-dj-database-url
-psycopg2-binary
+Django==6.0.2
 gunicorn
 whitenoise
 pandas
 openpyxl
 python-dotenv
+psycopg2-binary
+dj-database-url
