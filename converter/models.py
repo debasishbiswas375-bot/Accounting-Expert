@@ -1,9 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-class ExcelToTallyLog(models.Model):
-    file_name = models.CharField(max_length=255)
-    converted_at = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=50, default="Success")
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    credits = models.IntegerField(default=100)
+    is_pro = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.file_name} - {self.converted_at}"
+        return f"{self.user.username} - {self.credits} Credits"
