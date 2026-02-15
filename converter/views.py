@@ -1,14 +1,5 @@
-from django.shortcuts import render, redirect
-from .forms import RegisterForm
+from django.shortcuts import render
 
-
-def register(request):
-    if request.method == 'POST':
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/admin/')
-    else:
-        form = RegisterForm()
-
-    return render(request, 'register.html', {'form': form})
+def home(request):
+    # Renders converter/templates/home.html
+    return render(request, 'home.html')
