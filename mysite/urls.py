@@ -3,5 +3,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('converter.urls')),  # links your converter app
+    path('', include('converter.urls')),
 ]
