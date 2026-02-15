@@ -21,11 +21,11 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware', # Position 3 (Fixed)
+    'django.contrib.sessions.middleware.SessionMiddleware', # FIX: Required at Position 3
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware', # Position 6 (Fixed)
-    'django.contrib.messages.middleware.MessageMiddleware', # Position 7 (Fixed)
+    'django.contrib.auth.middleware.AuthenticationMiddleware', # FIX: Must follow Sessions
+    'django.contrib.messages.middleware.MessageMiddleware', # FIX: Required for Admin
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
