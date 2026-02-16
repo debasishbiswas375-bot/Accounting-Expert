@@ -8,7 +8,7 @@ import dj_database_url  # if you use PostgreSQL on Render
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','postgresql://neondb_owner:npg_RVfsPe3aAL7c@ep-little-scene-a1znmqcr-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require' )
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','postgresql://neondb_owner:npg_2wShnsL8ZAyf@ep-mute-hat-a1rtwd76-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
