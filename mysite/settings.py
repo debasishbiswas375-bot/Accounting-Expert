@@ -14,7 +14,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','postgresql://neondb_owner:npg_R
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
 # Add your Render domain and localhost for local dev
-ALLOWED_HOSTS = ['accountingexpert.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
 # Application definition
 INSTALLED_APPS = [
