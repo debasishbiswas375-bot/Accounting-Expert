@@ -16,6 +16,10 @@ DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 # Add your Render domain and localhost for local dev
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
+CSRF_TRUSTED_ORIGINS = ['https://accountingexpert.onrender.com']
+
+
+
 # Application definition
 INSTALLED_APPS = [
     'converter',  # your app
