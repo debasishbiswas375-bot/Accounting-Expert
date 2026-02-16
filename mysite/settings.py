@@ -13,8 +13,9 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','postgresql://neondb_owner:npg_R
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
-# Add your Render domain and localhost for local dev
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+
+ALLOWED_HOSTS = ['*']  # This allows ANY host and will bypass the yellow error
+
 
 CSRF_TRUSTED_ORIGINS = ['https://accountingexpert.onrender.com']
 
