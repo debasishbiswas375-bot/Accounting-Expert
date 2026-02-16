@@ -2,11 +2,14 @@
 # exit on error
 set -o errexit
 
+# Install dependencies
 pip install -r requirements.txt
-python manage.py collectstatic --no-input
-python manage.py makemigrations 
+
+# Recreate the missing tables (Fixes: "relation auth_user does not exist")
 python manage.py migrate
 
-# Admin Credentials: admin | admin123
-export DJANGO_SUPERUSER_PASSWORD="admin123"
-python manage.py createsuperuser --noinput --username admin --email admin@example.com || true
+# Create the admin account automatically
+# It uses environment variables so you don't expose your password in code
+if [[ $CREATE_SUPERUSER ]]; then
+  python manage.py createsuperuser --noinput || true
+fi
